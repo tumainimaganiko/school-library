@@ -12,4 +12,14 @@ class Person
 
   attr_writer :name
   attr_writer :age
+
+  def of_age?
+    if  @age >= 18
+        return true
+    else
+        return false
+    end
+  end
+  
+  private :of_age?
 end
