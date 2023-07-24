@@ -1,14 +1,15 @@
 require "./nameable.rb"
 
 class Decorator < Nameable
-    attr_accessor :component
+    attr_accessor :nameable
 
-    def initialize(component)
-        @component = component
+    def initialize(nameable)
+        super()
+        @nameable = nameable
     end
 
     def correct_name
-        @component.correct_name
+        @nameable.correct_name
     end
 
 end
