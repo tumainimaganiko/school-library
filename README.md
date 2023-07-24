@@ -106,7 +106,6 @@ Clone this repository to your desired folder:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
- -  use the "Decorator" design pattern.
  -  set up associations.
  -  add basic UI.
  -  preserve data.
