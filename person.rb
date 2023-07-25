@@ -1,8 +1,9 @@
 require './nameable'
+require './rental.rb'
 
 class Person < Nameable
-  attr_reader :id, :rentals
-  attr_accessor :name, :age
+  attr_reader :id
+  attr_accessor :name, :age, :rentals
 
   def initialize(age, name = 'unknown', parent_permission: true)
     super()
@@ -13,9 +14,10 @@ class Person < Nameable
     @rentals = []
   end
 
-  def add_rental(rental)
+  def add_rental(book, date)
+    rental = Rental.new(book, date, self)
     @rentals << rental
-    rentals.person = self
+    rental
   end
 
   def can_use_services?
