@@ -1,5 +1,5 @@
 require './nameable'
-require './rental.rb'
+require './rental'
 
 class Person < Nameable
   attr_reader :id
