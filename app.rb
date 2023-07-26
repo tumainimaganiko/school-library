@@ -131,5 +131,21 @@ class App
       7 => method(:exit_app)
     }
 
-    
+    loop do
+      menu
+      user_option = gets.chomp.to_i
+
+      if options.key?(user_option)
+        options[user_option].call
+      else
+        puts 'Invalid Selection'
+      end
+
+      break if user_option == 7
+    end
+  end
+
+  def exit_app
+    puts 'Thank you for using this app!'
+  end
 end
