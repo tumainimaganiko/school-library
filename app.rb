@@ -21,5 +21,17 @@ class App
     @people.each { |person| puts "\n[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
   end
 
+  def create_person
+    print "Do you want to create a Student (1) or a Teacher (2)? [Input the number]:"
+    option = gets.chomp.to_i
+
+    case option
+    when 1
+      create_student
+    when 2
+      create_teacher
+    end
+  end
+
   
 end
