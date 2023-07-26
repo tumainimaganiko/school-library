@@ -120,5 +120,16 @@ class App
     puts 'Waiting for your option'
   end
 
-  
+  def display
+    options = {
+      1 => method(:all_books),
+      2 => method(:all_people),
+      3 => method(:create_person),
+      4 => method(:create_book),
+      5 => method(:create_rental),
+      6 => method(:list_rentals),
+      7 => method(:exit_app)
+    }
+
+    
 end
