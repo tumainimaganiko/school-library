@@ -16,5 +16,10 @@ class App
     @books.each { |book| puts "\nTitle: \"#{book.title}\", Author: #{book.author}" }
   end
 
+  def all_people
+    puts "There are currently no recorded people in the system. You can add a person to store their information." if @people.empty?
+    @people.each { |person| puts "\n[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+  end
+
   
 end
