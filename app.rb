@@ -52,5 +52,17 @@ class App
       puts "Student created succesfully"
   end
 
+  def create_teacher
+    print "\nName: "
+      name = gets.chomp
+      print "Age: "
+      age = gets.chomp.to_i
+      print "Specialization: "
+      specialization = gets.chomp
+      teacher = Teacher.new(specialization, age, name, true)
+      @people << teacher
+      puts "Teacher created succesfully"
+  end
+
   
 end
