@@ -64,5 +64,15 @@ class App
       puts "Teacher created succesfully"
   end
 
+  def create_book
+    print "\nTitle: "
+    title = gets.chomp
+    print "Author: "
+    author = gets.chomp
+    book = Book.new(title, author)
+    @books << book
+    puts "Book created succesfully"
+  end
+
   
 end
