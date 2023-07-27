@@ -141,7 +141,7 @@ class App
         puts 'Invalid Selection'
       end
 
-      break if user_option == 7
+      # break if user_option == 7
     end
   end
 
