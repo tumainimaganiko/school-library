@@ -3,6 +3,7 @@ require './person'
 require './rental'
 require './student'
 require './teacher'
+require 'pry'
 
 class App
   def initialize
@@ -141,7 +142,7 @@ class App
         puts 'Invalid Selection'
       end
 
-      # break if user_option == 7
+      break if user_option == 10
     end
   end
 
