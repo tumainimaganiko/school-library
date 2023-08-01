@@ -11,39 +11,6 @@ class App
     @people = []
   end
 
-  def create_rental
-    puts 'Select a book from the following lists'
-    @books.each_with_index { |book, idx| puts "#{idx}) Title: #{book.title}, Author: #{book.author}" }
-    book_index = gets.chomp.to_i
-
-    puts 'Select a person from the following list by number (not id)'
-    @people.each_with_index { |person, idx| puts "#{idx}) Name: #{person.name}, ID: #{person.id}, AGE: #{person.age}" }
-    person_index = gets.chomp.to_i
-
-    print 'Date: '
-    date_of_rental = gets.chomp
-
-    rental = Rental.new(@people[person_index], @books[book_index], date_of_rental)
-    @rentals << rental
-    puts 'Rental created succesfully'
-  end
-
-  def list_rentals
-    print "\nID of the person: "
-    person_id = gets.chomp.to_i
-
-    found_rentals = @rentals.select { |rental| rental.person.id == person_id }
-
-    if found_rentals.empty?
-      puts "There are currently no rented books in the system under #{person_id} id."
-    else
-      puts 'Rentals:'
-      found_rentals.each do |rental|
-        puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"
-      end
-    end
-  end
-
   def menu
     puts "\nPlease choose an option by entering a number:"
     puts '1 - List all books'
