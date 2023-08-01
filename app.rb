@@ -1,10 +1,13 @@
-require './book'
-require './person'
-require './rental'
-require './student'
-require './teacher'
+require './listbooks'
+require './listpeople'
+require './create_person'
+require './createbook'
+require './createrental'
+require './listrentals'
 
 class App
+  attr_accessor :books, :rentals, :people
+
   def initialize
     @books = []
     @rentals = []
@@ -25,16 +28,26 @@ class App
   end
 
   def display
+    all_books = ListBooks.new
+    all_people = ListPeople.new
+    create_book = CreateBook.new
+    create_rental = CreateRental.new
+    list_rentals = ListRentals.new
+    create_person = CreatePerson.new
+
     options = {
-      1 => method(:all_books),
-      2 => method(:all_people),
-      3 => method(:create_person),
-      4 => method(:create_book),
-      5 => method(:create_rental),
-      6 => method(:list_rentals),
+      1 => -> { all_books.list_books(@books) },
+      2 => -> { all_people.list_people(@people) },
+      3 => -> { create_person.create_person(@people) },
+      4 => -> { create_book.create_book(@books) },
+      5 => -> { create_rental.create_rental(@rentals, @books, @people) },
+      6 => -> { list_rentals.list_rentals(@rentals) },
       7 => method(:exit_app)
     }
+    user_input(options)
+  end
 
+  def user_input(options)
     loop do
       menu
       user_option = gets.chomp.to_i
