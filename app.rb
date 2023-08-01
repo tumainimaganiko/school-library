@@ -11,49 +11,6 @@ class App
     @people = []
   end
 
-  def create_person
-    print 'Do you want to create a Student (1) or a Teacher (2)? [Input the number]:'
-    option = gets.chomp.to_i
-
-    case option
-    when 1
-      create_student
-    when 2
-      create_teacher
-    end
-  end
-
-  def create_student
-    print "\nName: "
-    name = gets.chomp
-    print 'Age: '
-    age = gets.chomp.to_i
-    print 'Has parent permission? [Y/N]: '
-    parent_permission = gets.chomp
-    if parent_permission.downcase == 'n'
-      student = Student.new('classroom', age, true, name)
-    elsif parent_permission.downcase == 'y'
-      student = Student.new('classroom', age, false, name)
-    else
-      puts 'Invalid Selection for parent permission'
-      return
-    end
-    @people << student
-    puts 'Student created succesfully'
-  end
-
-  def create_teacher
-    print "\nName: "
-    name = gets.chomp
-    print 'Age: '
-    age = gets.chomp.to_i
-    print 'Specialization: '
-    specialization = gets.chomp
-    teacher = Teacher.new(specialization, age, true, name)
-    @people << teacher
-    puts 'Teacher created succesfully'
-  end
-
   def create_book
     print "\nTitle: "
     title = gets.chomp
