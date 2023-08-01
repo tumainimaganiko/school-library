@@ -11,16 +11,6 @@ class App
     @people = []
   end
 
-  def create_book
-    print "\nTitle: "
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-    book = Book.new(title, author)
-    @books << book
-    puts 'Book created succesfully'
-  end
-
   def create_rental
     puts 'Select a book from the following lists'
     @books.each_with_index { |book, idx| puts "#{idx}) Title: #{book.title}, Author: #{book.author}" }
