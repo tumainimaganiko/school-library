@@ -11,16 +11,6 @@ class App
     @people = []
   end
 
-  def all_books
-    puts 'There are currently no recorded books in the system' if @books.empty?
-    @books.each { |book| puts "\nTitle: \"#{book.title}\", Author: #{book.author}" }
-  end
-
-  def all_people
-    puts 'There are currently no recorded people in the system.' if @people.empty?
-    @people.each { |person| puts "\n[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
-  end
-
   def create_person
     print 'Do you want to create a Student (1) or a Teacher (2)? [Input the number]:'
     option = gets.chomp.to_i
