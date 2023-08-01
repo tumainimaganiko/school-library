@@ -18,7 +18,7 @@
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Tests](#tests)
-  - [👥 Author ](#-author-)
+  - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
   - [⭐️ Show your support ](#️-show-your-support-)
@@ -92,7 +92,7 @@ Clone this repository to your desired folder:
 
 <!-- AUTHOR -->
 
-## 👥 Author <a name="authors"></a>
+## 👥 Authors <a name="authors"></a>
 
 👤 **Tumaini Maganiko**
 
@@ -100,6 +100,12 @@ Clone this repository to your desired folder:
 - Twitter: [@twitterhandle](https://twitter.com/Chief2maini)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/tumainimaganiko/)
 
+
+👤 **Tetteh Kodjo-Sarso**
+
+- GitHub: [@githubhandle](https://github.com/Reggeditt)
+- Twitter: [@twitterhandle](https://twitter.com/tksarso)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/tksarso/)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
