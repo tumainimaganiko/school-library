@@ -4,6 +4,7 @@ require './create_person'
 require './createbook'
 require './createrental'
 require './listrentals'
+require 'json'
 
 class App
   attr_accessor :books, :rentals, :people
@@ -11,7 +12,29 @@ class App
   def initialize
     @books = []
     @rentals = []
-    @people = []
+    @people = load_people
+  end
+
+  def load_books
+    if File.file?('books.json') && !File.empty?('books.json')
+      @books = JSON.parse(File.read('books.json'))
+    else
+      @books = []
+    end
+  end
+  def load_people
+    if File.exist?('people.json') && !File.empty?('people.json') 
+      @people = [JSON.parse(File.read('people.json'))]
+    else 
+      @people = []
+    end
+  end
+  def load_rentals
+    if File.exist?('rentals.json') && !File.empty?('rentals.json') 
+      @rentals = JSON.parse(File.read('rentals.json'))
+    else 
+      @rentals = []
+    end
   end
 
   def menu
@@ -22,7 +45,8 @@ class App
     puts '4 - Create a book'
     puts '5 - Create a rental'
     puts '6 - List all rentals for a given person id'
-    puts '7 - exit'
+    puts '7 - save data'
+    puts '8 - exit'
 
     puts 'Waiting for your option'
   end
@@ -42,7 +66,8 @@ class App
       4 => -> { create_book.create_book(@books) },
       5 => -> { create_rental.create_rental(@rentals, @books, @people) },
       6 => -> { list_rentals.list_rentals(@rentals) },
-      7 => method(:exit_app)
+      7 => method(:save_data),
+      8 => method(:exit_app)
     }
     user_input(options)
   end
@@ -58,7 +83,13 @@ class App
         puts 'Invalid Selection'
       end
 
-      break if user_option == 7
+      break if user_option == 8
+    end
+  end
+
+  def save_data
+    File.open('people.json', 'w') do |f1|
+      f1.puts @people.to_json
     end
   end
 
