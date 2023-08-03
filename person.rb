@@ -6,6 +6,4 @@ class Person
     @name = name
     @age = age
   end
-
-  private
 end

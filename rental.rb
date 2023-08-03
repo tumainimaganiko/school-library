@@ -11,10 +11,10 @@ class Rental
 
   def as_json(*)
     {
-      person_id: @person[:id] || @person["id"],
-      person_name: @person[:name] || @person["name"],
-      book_title: @book[:title] || @book["title"],
-      book_author: @book[:author] || @book["author"],
+      person_id: @person[:id] || @person['id'],
+      person_name: @person[:name] || @person['name'],
+      book_title: @book[:title] || @book['title'],
+      book_author: @book[:author] || @book['author'],
       date: @date.to_s
     }
   end

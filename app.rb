@@ -122,21 +122,24 @@ class App
     puts "\nRental created successfully"
   end
 
-
   def list_books
     puts "\nBooks List:"
-    @books.each_with_index { |book, idx| puts "#{idx + 1}) #{book[:title] || book['title']} by #{book[:author] || book["author"]}" }
+    @books.each_with_index do |book, idx|
+      puts "#{idx + 1}) #{book[:title] || book['title']} by #{book[:author] || book['author']}"
+    end
   end
 
   def list_people
     puts "\nPeople List:"
-    @people.each_with_index { |person, idx| puts "#{idx + 1}) #{person[:name]||person["name"]} (#{person[:type] || person["type"]}), Age: #{person[:age] || person["age"]}" }
+    @people.each_with_index do |person, idx|
+      puts "#{idx + 1}) #{person[:name] || person['name']} (#{person[:type] || person['type']}), Age: #{person[:age] || person['age']}"
+    end
   end
 
   def list_rentals
     puts "\nRentals List:"
     @rentals.each_with_index do |rental, idx|
-      puts "#{idx + 1}) #{rental["book_title"]} rented by #{rental["person_name"]}(#{rental["person_id"]}) on #{rental["date"]}"
+      puts "#{idx + 1}) #{rental['book_title']} rented by #{rental['person_name']}(#{rental['person_id']}) on #{rental['date']}"
     end
   end
 
@@ -156,6 +159,7 @@ class App
 
   def load_from_json(filename)
     return [] unless File.exist?(filename)
+
     JSON.parse(File.read(filename))
   end
 
