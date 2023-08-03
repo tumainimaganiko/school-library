@@ -11,52 +11,50 @@ class App
     @people = []
     @books = []
     @rentals = []
+    @exit = false
   end
 
   def main_loop
     loop do
       display_menu
-      choice = user_input
+      process_choice
+      next unless @exit == true
 
-      case choice
-      when 1
-        create_student
-      when 2
-        create_teacher
-      when 3
-        create_book
-      when 4
-        create_rental
-      when 5
-        list_books
-      when 6
-        list_people
-      when 7
-        list_rentals
-      when 8
-        save_data_to_json
-      when 9
-        load_data_from_json
-      when 0
-        save_data_to_json
-        puts 'thanks for using the app!'
-        break
-      else
-        puts 'Invalid choice. Please try again.'
-      end
+      puts 'thanks for using the app!'
+      save_data_to_json
+      break
+    end
+  end
+
+  def process_choice
+    choice = user_input
+    case choice
+    when 1
+      create_person
+    when 2
+      create_book
+    when 3
+      create_rental
+    when 4
+      list_books
+    when 5
+      list_people
+    when 6
+      list_rentals
+    when 0
+      @exit = true
+    else
+      puts 'Invalid choice. Please try again.'
     end
   end
 
   def display_menu
-    puts '1. Create Student'
-    puts '2. Create Teacher'
-    puts '3. Create Book'
-    puts '4. Create Rental'
-    puts '5. List Books'
-    puts '6. List People'
-    puts '7. List Rentals'
-    puts '8. Save Data to JSON'
-    puts '9. Load Data from JSON'
+    puts '1. Create Person'
+    puts '2. Create Book'
+    puts '3. Create Rental'
+    puts '4. List Books'
+    puts '5. List People'
+    puts '6. List Rentals'
     puts '0. Exit'
   end
 
@@ -92,6 +90,20 @@ class App
     teacher = Teacher.new(name, age, specialization)
     @people << teacher.as_json
     puts "\nTeacher created successfully: #{teacher.as_json}"
+  end
+
+  def create_person
+    puts 'select the type of person to create:'
+    puts "1. Student\n2. Teacher"
+    person_type = gets.chomp.to_i
+    case person_type
+    when 1
+      create_student
+    when 2
+      create_teacher
+    else
+      puts 'Invalid choice. Please try again.'
+    end
   end
 
   def create_book
@@ -132,14 +144,17 @@ class App
   def list_people
     puts "\nPeople List:"
     @people.each_with_index do |person, idx|
-      puts "#{idx + 1}) #{person[:name] || person['name']} (#{person[:type] || person['type']}), Age: #{person[:age] || person['age']}"
+      print "#{idx + 1}) #{person[:name] || person['name']} (#{person[:type] || person['type']})"
+      print ", Age: #{person[:age] || person['age']}"
     end
   end
 
   def list_rentals
     puts "\nRentals List:"
     @rentals.each_with_index do |rental, idx|
-      puts "#{idx + 1}) #{rental['book_title']} rented by #{rental['person_name']}(#{rental['person_id']}) on #{rental['date']}"
+      print "#{idx + 1}) #{rental['book_title']}"
+      print " rented by #{rental['person_name']}(#{rental['person_id']})"
+      print " on #{rental['date']}"
     end
   end
 
@@ -150,7 +165,6 @@ class App
   end
 
   def save_data_to_json
-    Dir.mkdir(DATA_PATH) unless Dir.exist?(DATA_PATH)
     save_to_json(@people, "#{DATA_PATH}people.json")
     save_to_json(@books, "#{DATA_PATH}books.json")
     save_to_json(@rentals, "#{DATA_PATH}rentals.json")
