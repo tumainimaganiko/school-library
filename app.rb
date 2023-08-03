@@ -2,6 +2,7 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'book'
 require_relative 'rental'
+require_relative 'factory'
 require 'json'
 
 class App
@@ -48,21 +49,6 @@ class App
     end
   end
 
-  def display_menu
-    puts '1. Create Person'
-    puts '2. Create Book'
-    puts '3. Create Rental'
-    puts '4. List Books'
-    puts '5. List People'
-    puts '6. List Rentals'
-    puts '0. Exit'
-  end
-
-  def user_input
-    print 'Enter your choice: '
-    gets.chomp.to_i
-  end
-
   def create_student
     print "\nName: "
     name = gets.chomp
@@ -90,20 +76,6 @@ class App
     teacher = Teacher.new(name, age, specialization)
     @people << teacher.as_json
     puts "\nTeacher created successfully: #{teacher.as_json}"
-  end
-
-  def create_person
-    puts 'select the type of person to create:'
-    puts "1. Student\n2. Teacher"
-    person_type = gets.chomp.to_i
-    case person_type
-    when 1
-      create_student
-    when 2
-      create_teacher
-    else
-      puts 'Invalid choice. Please try again.'
-    end
   end
 
   def create_book
@@ -158,23 +130,11 @@ class App
     end
   end
 
-  def save_to_json(data, filename)
-    File.open(filename, 'w') do |file|
-      file.puts data.to_json
-    end
-  end
-
   def save_data_to_json
     save_to_json(@people, "#{DATA_PATH}people.json")
     save_to_json(@books, "#{DATA_PATH}books.json")
     save_to_json(@rentals, "#{DATA_PATH}rentals.json")
     puts "\nData has been saved to JSON files."
-  end
-
-  def load_from_json(filename)
-    return [] unless File.exist?(filename)
-
-    JSON.parse(File.read(filename))
   end
 
   def load_data_from_json
