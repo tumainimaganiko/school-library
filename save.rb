@@ -36,4 +36,22 @@ class SaveData
     saved.write generated_json_value
     saved.close
   end
+
+  def write_people_file(file, message)
+    ara = []
+    message.each do |values|
+      if values.is_a?(Hash)
+        ara.push(values)
+      elsif values.instance_of?(Student)
+        ara.push({ 'class' => values.class, 'name' => values.name, 'id' => values.id, 'age' => values.age })
+      else
+        ara.push({ 'class' => values.class, 'name' => values.name, 'id' => values.id, 'age' => values.age,
+                   'specialization' => values.specialization })
+      end
+    end
+    generated_json_value = JSON.generate(ara)
+    saved = File.open(file, 'w')
+    saved.write generated_json_value
+    saved.close
+  end
 end
