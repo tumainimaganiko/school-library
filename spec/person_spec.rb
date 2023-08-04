@@ -28,4 +28,18 @@ describe Person do
       expect(person.correct_name).to eq('John Doe')
     end
   end
+
+  describe '#of_age?' do
+    it 'returns true if the person is of age' do
+      person = Person.new(20, 'John Doe', parent_permission: true)
+      result = person.send(:of_age?) # Using reflection to access private method
+      expect(result).to eq(true)
+    end
+
+    it 'returns false if the person is underage' do
+      person = Person.new(16, 'Jane Doe', parent_permission: false)
+      result = person.send(:of_age?) # Using reflection to access private method
+      expect(result).to eq(false)
+    end
+  end
 end
