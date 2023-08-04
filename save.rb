@@ -6,4 +6,18 @@ class SaveData
     []
   end
 
+  def write_in_book_file(file, message)
+    books = []
+    message.each do |values|
+      if values.is_a?(Hash)
+        books.push(values)
+      else
+        books.push({ 'title' => values.title, 'author' => values.author })
+      end
+    end
+    generated_json_value = JSON.generate(books)
+    saved = File.open(file, 'w')
+    saved.write generated_json_value
+    saved.close
+  end
 end
