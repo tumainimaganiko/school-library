@@ -20,4 +20,20 @@ class SaveData
     saved.write generated_json_value
     saved.close
   end
+
+  def write_in_rental_file(file, message)
+    rentals = []
+    message.each do |values|
+      if values.is_a?(Hash)
+        rentals.push(values)
+      else
+        rentals.push({ 'author' => values.book.author, 'title' => values.book.title, 'date' => values.date,
+                       'id' => values.person.id })
+      end
+    end
+    generated_json_value = JSON.generate(rentals)
+    saved = File.open(file, 'w')
+    saved.write generated_json_value
+    saved.close
+  end
 end
