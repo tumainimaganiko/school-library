@@ -1,17 +1,20 @@
+require 'json'
 require './listbooks'
 require './listpeople'
 require './create_person'
 require './createbook'
 require './createrental'
 require './listrentals'
+require './save'
 
 class App
   attr_accessor :books, :rentals, :people
 
   def initialize
-    @books = []
-    @rentals = []
-    @people = []
+    @data = SaveData.new
+    @books = @data.file_reader('books.json')
+    @rentals = @data.file_reader('rentals.json')
+    @people = @data.file_reader('people.json')
   end
 
   def menu
@@ -63,6 +66,9 @@ class App
   end
 
   def exit_app
+    @data.write_people_file('people.json', @people)
+    @data.write_in_book_file('books.json', @books)
+    @data.write_in_rental_file('rentals.json', @rentals)
     puts 'Thank you for using this app!'
   end
 end
